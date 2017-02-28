@@ -2,9 +2,10 @@ package com.example.hp.newsrewrite;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +20,13 @@ import java.util.List;
 
 public class NewsAsyncTask extends AsyncTask<String, Void, List<ListBean>> {
 
-    Context context;
+    private Context context;
+    private ListAdapter listAdapter;
+    private RecyclerView list;
 
-    NewsAsyncTask(Context context) {
+    NewsAsyncTask(Context context, RecyclerView list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
@@ -32,10 +36,13 @@ public class NewsAsyncTask extends AsyncTask<String, Void, List<ListBean>> {
 
     @Override
     protected void onPostExecute(List<ListBean> listBeen) {
-        //  super.onPostExecute(listBeen);
-        //   NewsAdapter newsAdapter = new NewsAdapter(MainActivity.this, newsBeans);
-        //  mListView.setAdapter(newsAdapter);
-        //   mSwipeLayout.setRefreshing(false);
+        super.onPostExecute(listBeen);
+        ListAdapter listAdapter;
+        listAdapter = new ListAdapter(listBeen,context);
+       // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        list.setAdapter(listAdapter);
+      //  list.setLayoutManager(linearLayoutManager);
+      //  mSwipeLayout.setRefreshing(false);
     }
 
 
