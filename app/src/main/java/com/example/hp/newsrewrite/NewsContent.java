@@ -1,6 +1,7 @@
 package com.example.hp.newsrewrite;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -17,7 +18,23 @@ public class NewsContent extends Activity {
         setContentView(R.layout.content_layout);
         content_title = (TextView)findViewById(R.id.content_title);
         Bundle bundle=getIntent().getExtras();
-        String index = bundle.getString("index");
-        content_title.setText(index);
+        int index = bundle.getInt("index");
+        String storyUrl = "http://open.twtstudio.com/api/v1/news/" + String.valueOf(index);
+
+    }
+
+    class contentAsyncTask extends AsyncTask<String, Void, ContentBean>{
+
+        @Override
+        protected ContentBean doInBackground(String... params) {
+            return null;
+        }
+        @Override
+        protected void onPostExecute(ContentBean contentBean){
+            super.onPostExecute(contentBean);
+
+        }
+
+
     }
 }

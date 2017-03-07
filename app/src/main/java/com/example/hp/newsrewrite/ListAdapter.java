@@ -35,6 +35,8 @@ public class ListAdapter extends RecyclerView.Adapter {
         ImageView item_pic;
         TextView item_subject;
         TextView item_summary;
+        TextView visit_count;
+        TextView comments;
 
         public NewsViewHold(View itemView) {
             super(itemView);
@@ -42,6 +44,8 @@ public class ListAdapter extends RecyclerView.Adapter {
             item_pic = (ImageView) itemView.findViewById(R.id.item_pic);
             item_subject = (TextView) itemView.findViewById(R.id.item_subject);
             item_summary = (TextView) itemView.findViewById(R.id.item_summary);
+            visit_count = (TextView)itemView.findViewById(R.id.visit_count);
+            comments = (TextView)itemView.findViewById(R.id.comments);
         }
     }
 
@@ -63,6 +67,8 @@ public class ListAdapter extends RecyclerView.Adapter {
                 .error(R.mipmap.ic_launcher).into(newsViewHold.item_pic);
         newsViewHold.item_subject.setText(listBeen.get(positionFinal).subject);
         newsViewHold.item_summary.setText(listBeen.get(positionFinal).summary);
+        newsViewHold.visit_count.setText(String.valueOf(listBeen.get(positionFinal).visitcount));
+        newsViewHold.comments.setText(String.valueOf(listBeen.get(positionFinal).comments));
         newsViewHold.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
