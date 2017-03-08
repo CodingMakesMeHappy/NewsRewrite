@@ -1,6 +1,5 @@
 package com.example.hp.newsrewrite;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
     public int page = 1;
     public final static String urlHead = "http://open.twtstudio.com/api/v1/news/1/page/";
     private RecyclerView list;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list = (RecyclerView) findViewById(R.id.list);
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        page = 1;
+                        dataToShow.clear();
                         new NewsAsyncTask().execute(urlHead + String.valueOf(page));
 
                     }
@@ -52,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         );
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
         list.setLayoutManager(linearLayoutManager);
-
 
 
         list.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -77,10 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        final int gray = 0xffBFBFBF;
+        list.addItemDecoration(new RecycleViewDivider(
+                MainActivity.this, LinearLayoutManager.HORIZONTAL, 50, gray));
     }
 
     private class NewsAsyncTask extends AsyncTask<String, Void, List<ListBean>> {
-
 
 
         @Override
@@ -91,11 +95,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<ListBean> listBeen) {
             super.onPostExecute(listBeen);
-
-
-//            ListAdapter listAdapter;
-//            listAdapter = new ListAdapter(listBeen, MainActivity.this);
-//            list.setAdapter(listAdapter);
 
             listAdapter.notifyDataSetChanged();
 

@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<ScrollView
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/content_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="45dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/wangyiRed" />
+
+            <TextView
+                android:id="@+id/content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="@color/white"/>
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </WebView>
+        <TextView
+            android:background="@color/white"
+            android:gravity="end"
+            android:id="@+id/news_come"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="15sp"/>
+        <TextView
+            android:background="@color/white"
+            android:gravity="end"
+            android:id="@+id/gonggao"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="15sp" />
+        <TextView
+            android:background="@color/white"
+            android:gravity="end"
+            android:id="@+id/shengao"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="15sp" />
+        <TextView
+            android:background="@color/white"
+            android:gravity="end"
+            android:id="@+id/sheying"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

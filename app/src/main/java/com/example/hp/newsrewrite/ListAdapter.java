@@ -73,7 +73,7 @@ public class ListAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("index",String.valueOf(listBeen.get(positionFinal).index));
+                bundle.putInt("index",listBeen.get(positionFinal).index);
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
                 intent.setClass(context,NewsContent.class);
